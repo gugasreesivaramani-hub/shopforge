@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '../../api';
 import { useCart } from '../../context/CartContext';
 
 const CheckoutPage = () => {
@@ -37,8 +37,8 @@ const CheckoutPage = () => {
     setSubmitting(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/orders',
+      await api.post(
+        '/api/orders',
         {
           items: cart,
           totalAmount,

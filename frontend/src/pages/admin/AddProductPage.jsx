@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const AddProductPage = () => {
@@ -51,7 +51,7 @@ const AddProductPage = () => {
       formData.append('stock', Number(product.stock));
       formData.append('imageFile', imageFile);
 
-      await axios.post('http://localhost:5000/api/products', formData, {
+      await api.post('/api/products', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

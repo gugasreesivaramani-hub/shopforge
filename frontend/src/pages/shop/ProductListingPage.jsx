@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
+import { api, getImageUrl } from '../../api';
 import { useCart } from '../../context/CartContext';
 
 const baseCategoryColors = ['#ffe6ea', '#ffd7dc', '#fff0d9', '#e8f0ff', '#ffe8f2', '#f7e6ff', '#fff0f0'];
@@ -13,7 +13,7 @@ const categoryEmoji = {
 
 const getFullImageUrl = (url) => {
   if (!url) return null;
-  return url.startsWith('http') ? url : `http://localhost:5000${url}`;
+  return url.startsWith('http') ? url : getImageUrl(url);
 };
 
 const getProductTag = (product) => {
@@ -32,7 +32,7 @@ const ProductListingPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await api.get('/api/products');
         setProducts(response.data || []);
       } catch (err) {
         setProducts([]);

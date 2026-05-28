@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const CreateAdminPage = () => {
@@ -28,8 +28,8 @@ const CreateAdminPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post(
-        'http://localhost:5000/api/auth/register-admin',
+      await api.post(
+        '/api/auth/register-admin',
         { username, email, password },
         { headers: { Authorization: `Bearer ${token}` } }
       );

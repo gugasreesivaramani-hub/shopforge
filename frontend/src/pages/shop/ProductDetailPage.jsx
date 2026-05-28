@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { api, getImageUrl } from '../../api';
 
 const getFullImageUrl = (imageUrl) => {
   if (!imageUrl) return '';
-  return imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`;
+  return getImageUrl(imageUrl);
 };
 
 const ProductDetailPage = () => {
@@ -20,7 +20,7 @@ const ProductDetailPage = () => {
     const fetchProduct = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`, {
+        const response = await api.get(`/api/products/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

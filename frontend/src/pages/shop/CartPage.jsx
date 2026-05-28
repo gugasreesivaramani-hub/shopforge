@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { getImageUrl } from '../../api';
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const CartPage = () => {
 
   const getFullImageUrl = (imageUrl) => {
     if (!imageUrl) return '';
-    return imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`;
+    return getImageUrl(imageUrl);
   };
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);

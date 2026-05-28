@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api';
 import { useNavigate } from 'react-router-dom';
 
 const tabs = [
@@ -40,7 +40,7 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await api.post('/api/auth/login', {
         username,
         email,
         role: 'user',
@@ -69,7 +69,7 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await api.post('/api/auth/register', {
         username,
         email,
         password,
@@ -93,7 +93,7 @@ const LoginPage = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await api.post('/api/auth/login', {
         username,
         password,
         role: 'admin',

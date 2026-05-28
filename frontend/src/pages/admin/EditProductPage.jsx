@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EditProductPage = () => {
@@ -21,7 +21,7 @@ const EditProductPage = () => {
     const fetchProduct = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`, {
+        const response = await api.get(`/api/products/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = response.data;
@@ -75,7 +75,7 @@ const EditProductPage = () => {
         formData.append('imageFile', imageFile);
       }
 
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData, {
+      await api.put(`/api/products/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 
 const statusColor = {
   pending: '#ffb300',
@@ -16,7 +16,7 @@ const OrderHistoryPage = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/orders/my', {
+        const response = await api.get('/api/orders/my', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

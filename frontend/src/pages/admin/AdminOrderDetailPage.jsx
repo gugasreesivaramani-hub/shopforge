@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 import { useParams } from 'react-router-dom';
 
 const statusOptions = ['pending', 'processing', 'shipped', 'delivered'];
@@ -15,7 +15,7 @@ const AdminOrderDetailPage = () => {
     const fetchOrder = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/orders/admin/orders/${id}`, {
+        const response = await api.get(`/api/orders/admin/orders/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrder(response.data);
@@ -36,8 +36,8 @@ const AdminOrderDetailPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(
-        `http://localhost:5000/api/orders/admin/orders/${id}`,
+      const response = await api.put(
+        `/api/orders/admin/orders/${id}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

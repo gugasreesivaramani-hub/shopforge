@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api, getImageUrl } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const ProductManagementPage = () => {
@@ -9,13 +9,13 @@ const ProductManagementPage = () => {
 
   const getFullImageUrl = (imageUrl) => {
     if (!imageUrl) return '';
-    return imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`;
+    return getImageUrl(imageUrl);
   };
 
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/products', {
+      const response = await api.get('/api/products', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(response.data);
@@ -35,7 +35,7 @@ const ProductManagementPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/products/${id}`, {
+      await api.delete(`/api/products/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts((prev) => prev.filter((product) => product._id !== id));

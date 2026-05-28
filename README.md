@@ -28,6 +28,30 @@ A full-stack e-commerce application built with Node.js, Express, MongoDB, and Re
 
 The backend will run on `http://localhost:5000` (or the PORT specified in `.env`)
 
+### Deploying Online
+
+This project is now ready to deploy as a single hostable app:
+
+- Use `backend/.env.example` to configure `MONGODB_URI`, `JWT_SECRET`, and `PORT`.
+- Use `frontend/.env.example` to configure `VITE_API_URL` to point to your deployed backend.
+- Build and serve both frontend and backend together using `Dockerfile`.
+- For local container deployment, use `docker-compose.yml` and set environment variables in a root `.env` file.
+
+Example `.env` for local container deployment:
+
+```env
+MONGODB_URI=mongodb://mongo:27017/shopforge
+JWT_SECRET=your_jwt_secret_here
+```
+
+Then run:
+
+```bash
+docker compose up --build
+```
+
+Your app will be available at `http://localhost:5000`.
+
 ### Frontend Setup
 
 1. Navigate to the frontend directory:

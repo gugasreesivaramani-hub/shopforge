@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from '../../api';
 import { useNavigate } from 'react-router-dom';
 
 const OrdersListPage = () => {
@@ -11,7 +11,7 @@ const OrdersListPage = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/orders/admin/orders', {
+        const response = await api.get('/api/orders/admin/orders', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrders(response.data);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { getImageUrl } from '../api';
 
 const getFullImageUrl = (imageUrl) => {
-  if (!imageUrl) return '';
-  return imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`;
+  return getImageUrl(imageUrl);
 };
 
 const ProductCard = ({ product }) => {
