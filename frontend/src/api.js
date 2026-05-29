@@ -14,7 +14,7 @@ import axios from 'axios';
 
 export const API_BASE =
   import.meta.env.VITE_API_URL ||
-  'https://shopforge-1-0q0t.onrender.com';
+  'https://shopforge-1-0g0t.onrender.com';
 
 export const api = axios.create({
   baseURL: API_BASE,
