@@ -105,8 +105,9 @@ const ProductListingPage = () => {
         .heart-button { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.14); color: #fff; display: grid; place-items: center; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .heart-button:hover { transform: scale(1.05); }
         .heart-button.liked { color: #ffdce6; }
-        .product-body { background: #1d1720; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-height: 175px; }
+        .product-body { background: #1d1720; padding: 22px; display: flex; flex-direction: column; gap: 14px; min-height: 195px; }
         .product-name { margin: 0; font-size: 1.03rem; font-weight: 800; color: #ffffff; }
+        .product-card-tagline { margin: 10px 0 0; color: #f4d2e0; font-size: 0.88rem; line-height: 1.4; }
         .product-description { margin: 8px 0 0; color: #d3b7d0; font-size: 0.92rem; line-height: 1.5; min-height: 3rem; }
         .product-price { margin: 12px 0 0; color: #f7d9ea; font-size: 1rem; font-weight: 800; }
         .add-button { width: 100%; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px; padding: 14px 0; background: transparent; color: #ffffff; font-weight: 700; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: 10px; transition: transform 0.2s ease, background 0.2s ease; }
@@ -115,14 +116,6 @@ const ProductListingPage = () => {
         @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 860px) { .shop-topbar { flex-direction: column; align-items: flex-start; } }
       `}</style>
-
-      <div className="shop-topbar">
-        <div>
-          <h2 className="shop-title">Petal and Pearls</h2>
-          <p style={{ margin: '8px 0 0', color: '#7d5c6d' }}>Unique accessories that tell a story.</p>
-        </div>
-        <div className="cart-badge">🛒 {cartCount} item{cartCount === 1 ? '' : 's'}</div>
-      </div>
 
       <div className="category-row">
         {categories.map((name) => (
@@ -166,6 +159,7 @@ const ProductListingPage = () => {
               <div className="product-body">
                 <div>
                   <p className="product-name">{product.title}</p>
+                  <p className="product-card-tagline">Unique accessories that tell a story.</p>
                   <p className="product-description">
                     {product.description
                       ? `${product.description.slice(0, 72)}${product.description.length > 72 ? '…' : ''}`

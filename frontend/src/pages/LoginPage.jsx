@@ -50,7 +50,7 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       navigate('/shop');
     } catch (err) {
-      setError(err.response?.data?.message || 'Sign in failed. Please check your credentials.');
+      setError(err.response?.data?.message || err.response?.statusText || err.message || 'Sign in failed. Please check your credentials.');
     }
   };
 
@@ -79,7 +79,7 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       navigate('/shop');
     } catch (err) {
-      setError(err.response?.data?.message || 'Sign up failed. Please try again.');
+      setError(err.response?.data?.message || err.response?.statusText || err.message || 'Sign up failed. Please try again.');
     }
   };
 
